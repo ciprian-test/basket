@@ -5,5 +5,5 @@ let products = require("./products");
 
 module.exports = {
   Product: product.Product,
-  Products: product.Products,
+  Products: products.Products,
 };
