@@ -9,7 +9,7 @@ function Basket(products, offers) {
   this._offers = offers;
 }
 
-Basket.prototype.addProduct = function (productId, quantity) {
+Basket.prototype.add = function (productId, quantity) {
   
 };
 

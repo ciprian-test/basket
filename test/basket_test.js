@@ -25,5 +25,57 @@ describe("Basket", () => {
   let offersDb = new offers.Offers();
   offersDb.add(halfOffToBread).add(forthMilkFree);
 
+  it("should correctly get the basket cost for an empty basket", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    expect(basket.getTotalCost()).to.equal(0.0);
+  });
 
+  it("should correctly get the basket cost for single product basket", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    basket.add(butter.getId(), 1);
+    expect(basket.getTotalCost()).to.equal(0.8);
+
+    basket.remove(butter.getId()).add(milk.getId(), 1);
+    expect(basket.getTotalCost()).to.equal(1.15);
+
+    basket.remove(milk.getId()).add(bread.getId(), 1);
+    expect(basket.getTotalCost()).to.equal(1);
+  });
+
+  it("should correctly get the basket cost for basket with each product once", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    basket.add(butter.getId(), 1)
+          .add(milk.getId(), 1)
+          .add(bread.getId(), 1);
+    expect(basket.getTotalCost()).to.equal(2.95);
+  });
+
+  it("should correctly get the basket cost for basket with each product multiple times", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    basket.add(butter.getId(), 1)
+          .add(milk.getId(), 2)
+          .add(bread.getId(), 3);
+    expect(basket.getTotalCost()).to.equal(6.1);
+  });
+
+  it("should correctly apply the 'half off to bread' offer", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    basket.add(butter.getId(), 2)
+          .add(bread.getId(), 1);
+    expect(basket.getTotalCost()).to.equal(3.1);
+  });
+
+  it("should correctly apply the 'forth milk free' offer", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    basket.add(milk.getId(), 4);
+    expect(basket.getTotalCost()).to.equal(3.45);
+  });
+
+  it("should correctly apply multiple offers", () => {
+    let basket = new basket.Basket(productsDb, offersDb);
+    basket.add(butter.getId(), 2)
+          .add(milk.getId(), 8)
+          .add(bread.getId(), 1);
+    expect(basket.getTotalCost()).to.equal(9.0);
+  });
 });
