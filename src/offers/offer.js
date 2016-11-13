@@ -6,9 +6,10 @@ module.exports = {
   Offer: Offer
 };
 
-function Offer(productsDb, id) {
+function Offer(productsDb, id, name) {
   this._productsDb = productsDb;
   this._id = id;
+  this._name = name;
 
   this._products = {};
   this._discounts = {};
@@ -16,6 +17,10 @@ function Offer(productsDb, id) {
 
 Offer.prototype.getId = function () {
   return this._id;
+};
+
+Offer.prototype.getName = function () {
+  return this._name;
 };
 
 Offer.prototype.include = function (productId, quantity) {
