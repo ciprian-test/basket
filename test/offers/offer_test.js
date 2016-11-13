@@ -64,7 +64,6 @@ describe("Offer", () => {
     expect(offerDiscount.products).to.deep.equal({2: 1});
 
     offerDiscount = offer.calculateBasketDiscount({2: 2});
-    console.log(offerDiscount);
     expect(offerDiscount.discount).to.equal(0.3);
     expect(offerDiscount.products).to.deep.equal({2: 0});
 
