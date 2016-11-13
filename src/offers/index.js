@@ -4,6 +4,6 @@ let offer = require("./offer");
 let offers = require("./offers");
 
 module.exports = {
-  offer: offer.Offer,
-  offers: offer.Offers,
+  Offer: offer.Offer,
+  Offers: offers.Offers
 };
