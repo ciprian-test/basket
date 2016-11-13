@@ -14,7 +14,7 @@ lint:
 	@$(.BIN_PATH)/eslint test/
 
 test:
-	@$(.BIN_PATH)/mocha -R spec test
+	@$(.BIN_PATH)/mocha -R spec test/*
 
 start:
 	@node src/index.js
