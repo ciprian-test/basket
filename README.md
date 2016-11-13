@@ -10,7 +10,8 @@ The application allows the creation of a virtual shopping store, offering the fo
 
 ## How to run the application
 
-- `make deps` - to install the npm dependencies
+- install NodeJS
+- `make deps` - to install the npm dependencies (required for running the linter and the tests)
 - `make` - to run the lint and the tests
 - `make start` - to start the application
 
