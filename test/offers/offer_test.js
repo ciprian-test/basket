@@ -6,10 +6,9 @@ let offers = require("../../src/offers");
 let products = require("../../src/products");
 
 describe("Offer", () => {
-
   let productsDb = new products.Products();
-  let butter = new products.Product({id: 2, name: "Butter", price: 0.80});
-  let milk = new products.Product({id: 3, name: "Milk", price: 1.15});
+  let butter = new products.Product({ id: 2, name: "Butter", price: 0.80 });
+  let milk = new products.Product({ id: 3, name: "Milk", price: 1.15 });
   productsDb.add(butter).add(milk);
 
   it("should throw an error when including an invalid product", () => {
@@ -55,28 +54,28 @@ describe("Offer", () => {
     let offer = new offers.Offer(productsDb, 1);
     offer.include(2, 2).setPriceDiscountToProduct(2, 0.3);
 
-    let offerDiscount = offer.calculateBasketDiscount({3: 4});
+    let offerDiscount = offer.calculateBasketDiscount({ 3: 4 });
     expect(offerDiscount.discount).to.equal(0);
-    expect(offerDiscount.products).to.deep.equal({3: 4});
+    expect(offerDiscount.products).to.deep.equal({ 3: 4 });
 
-    offerDiscount = offer.calculateBasketDiscount({2: 1});
+    offerDiscount = offer.calculateBasketDiscount({ 2: 1 });
     expect(offerDiscount.discount).to.equal(0);
-    expect(offerDiscount.products).to.deep.equal({2: 1});
+    expect(offerDiscount.products).to.deep.equal({ 2: 1 });
 
-    offerDiscount = offer.calculateBasketDiscount({2: 2});
+    offerDiscount = offer.calculateBasketDiscount({ 2: 2 });
     expect(offerDiscount.discount).to.equal(0.3);
-    expect(offerDiscount.products).to.deep.equal({2: 0});
+    expect(offerDiscount.products).to.deep.equal({ 2: 0 });
 
-    offerDiscount = offer.calculateBasketDiscount({2: 3});
+    offerDiscount = offer.calculateBasketDiscount({ 2: 3 });
     expect(offerDiscount.discount).to.equal(0.3);
-    expect(offerDiscount.products).to.deep.equal({2: 1});
+    expect(offerDiscount.products).to.deep.equal({ 2: 1 });
 
-    offerDiscount = offer.calculateBasketDiscount({2: 20});
+    offerDiscount = offer.calculateBasketDiscount({ 2: 20 });
     expect(offerDiscount.discount).to.equal(3);
-    expect(offerDiscount.products).to.deep.equal({2: 0});
+    expect(offerDiscount.products).to.deep.equal({ 2: 0 });
 
-    offerDiscount = offer.calculateBasketDiscount({2: 20, 3: 4});
+    offerDiscount = offer.calculateBasketDiscount({ 2: 20, 3: 4 });
     expect(offerDiscount.discount).to.equal(3);
-    expect(offerDiscount.products).to.deep.equal({2: 0, 3: 4});
+    expect(offerDiscount.products).to.deep.equal({ 2: 0, 3: 4 });
   });
 });

@@ -5,7 +5,6 @@ let expect = require("chai").expect;
 let products = require("../../src/products");
 
 describe("Products", () => {
-
   it("should throw an error for invalid 'add' parameters", () => {
     let fn = function (product) {
       let productsDb = new products.Products();
@@ -15,7 +14,7 @@ describe("Products", () => {
     expect(fn).to.throw(/invalid/);
     expect(fn.bind(null, "")).to.throw(/invalid/);
     expect(fn.bind(null, {})).to.throw(/invalid/);
-    expect(fn.bind(null, new Array())).to.throw(/invalid/);
+    expect(fn.bind(null, [])).to.throw(/invalid/);
   });
 
   it("should throw an error for invalid 'update' parameters", () => {
@@ -27,16 +26,16 @@ describe("Products", () => {
     expect(fn.bind(null, undefined)).to.throw(/invalid/);
     expect(fn.bind(null, "")).to.throw(/invalid/);
     expect(fn.bind(null, {})).to.throw(/invalid/);
-    expect(fn.bind(null, new Array())).to.throw(/invalid/);
+    expect(fn.bind(null, [])).to.throw(/invalid/);
 
-    let butter = new products.Product({id: 1, name: "Butter", price: 0.80});
+    let butter = new products.Product({ id: 1, name: "Butter", price: 0.80 });
     expect(fn.bind(null, butter, 2)).to.throw(/not match/);
   });
 
   it("should return the correct added product", () => {
     let productsDb = new products.Products();
 
-    let butter = new products.Product({id: 1, name: "Butter", price: 0.80});
+    let butter = new products.Product({ id: 1, name: "Butter", price: 0.80 });
     let result = productsDb.add(butter);
 
     expect(result).to.equal(productsDb);
@@ -51,13 +50,13 @@ describe("Products", () => {
   it("should correctly update a product", () => {
     let productsDb = new products.Products();
 
-    let butter = new products.Product({id: 1, name: "Butter", price: 0.80});
+    let butter = new products.Product({ id: 1, name: "Butter", price: 0.80 });
     let result = productsDb.add(butter);
 
     expect(result).to.equal(productsDb);
     expect(productsDb.get(butter.getId())).to.equal(butter);
 
-    let unsaltedButter = new products.Product({id: butter.getId(), name: "Unsalted butter", price: 1.90});
+    let unsaltedButter = new products.Product({ id: butter.getId(), name: "Unsalted butter", price: 1.90 });
     result = productsDb.update(butter.getId(), unsaltedButter);
 
     expect(result).to.equal(productsDb);
@@ -67,7 +66,7 @@ describe("Products", () => {
   it("should correctly remove a product", () => {
     let productsDb = new products.Products();
 
-    let butter = new products.Product({id: 1, name: "Butter", price: 0.80});
+    let butter = new products.Product({ id: 1, name: "Butter", price: 0.80 });
     let result = productsDb.add(butter);
 
     expect(result).to.equal(productsDb);

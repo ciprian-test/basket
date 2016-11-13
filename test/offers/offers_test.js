@@ -5,7 +5,6 @@ let expect = require("chai").expect;
 let offers = require("../../src/offers");
 
 describe("Offers", () => {
-
   it("should throw an error for invalid 'add' parameters", () => {
     let fn = function (offer) {
       let offersDb = new offers.Offers();
@@ -15,7 +14,7 @@ describe("Offers", () => {
     expect(fn).to.throw(/invalid/);
     expect(fn.bind(null, "")).to.throw(/invalid/);
     expect(fn.bind(null, {})).to.throw(/invalid/);
-    expect(fn.bind(null, new Array())).to.throw(/invalid/);
+    expect(fn.bind(null, [])).to.throw(/invalid/);
   });
 
   it("should throw an error for invalid 'update' parameters", () => {
@@ -27,7 +26,7 @@ describe("Offers", () => {
     expect(fn.bind(null, undefined)).to.throw(/invalid/);
     expect(fn.bind(null, "")).to.throw(/invalid/);
     expect(fn.bind(null, {})).to.throw(/invalid/);
-    expect(fn.bind(null, new Array())).to.throw(/invalid/);
+    expect(fn.bind(null, [])).to.throw(/invalid/);
 
     let offer1 = new offers.Offer({}, 1);
     expect(fn.bind(null, offer1, 2)).to.throw(/not match/);

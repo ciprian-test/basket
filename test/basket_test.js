@@ -7,9 +7,9 @@ let offers = require("../src/offers");
 let basket = require("../src/basket");
 
 describe("Basket", () => {
-  let butter = new products.Product({id: 1, name: "Butter", price: 0.80});
-  let milk = new products.Product({id: 2, name: "Milk", price: 1.15});
-  let bread = new products.Product({id: 3, name: "Bread", price: 1.00});
+  let butter = new products.Product({ id: 1, name: "Butter", price: 0.80 });
+  let milk = new products.Product({ id: 2, name: "Milk", price: 1.15 });
+  let bread = new products.Product({ id: 3, name: "Bread", price: 1.00 });
 
   let productsDb = new products.Products();
   productsDb.add(butter).add(milk).add(bread);
